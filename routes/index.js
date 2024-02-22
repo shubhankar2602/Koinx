@@ -54,4 +54,72 @@ fetchCrypto();
 cron.schedule("0 * * * *", fetchCrypto); // Run every hour at the beginning of the hour
 
 
+// Task 2 Represent one currency in terms of another using the coingecko API 
 
+async function getCurrencyPrice(currency, timestamp) {
+  const url = `${COINGECKO_API_BASE}/coins/${currency}/market_chart/range`;
+  const params = {
+    vs_currency: "usd",
+    from: timestamp - 86400, // 1 day before the specified date
+    to: timestamp,
+  };
+
+  try {
+    const response = await axios.get(url, { params });
+    const prices = response.data.prices || [];
+    if (prices.length > 0) {
+      return prices[prices.length - 1][1];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching data from CoinGecko:", error.message);
+    throw error;
+  }
+}
+
+// endpooint for price fetching 
+
+router.post("/get_price", async (req, res) => {
+  const { fromCurrency, toCurrency, date } = req.body;
+
+  
+  // Convert date string to timestamp
+  const timestamp = new Date(date).getTime() / 1000;
+  try {
+    const fromCurrencyPrice = await getCurrencyPrice(fromCurrency, timestamp);
+    const toCurrencyPrice = await getCurrencyPrice(toCurrency, timestamp);
+
+    if (fromCurrencyPrice !== null && toCurrencyPrice !== null) {
+      
+      
+
+      const price = fromCurrencyPrice / toCurrencyPrice;
+      res.json({ price });
+    } else {
+      res.status(500).json({ error: "Unable to retrieve price" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+
+const apiUrl = 'http://localhost:3000/get_price';  
+
+const requestData = {
+    fromCurrency: 'bitcoin',
+    toCurrency: 'ethereum',
+    date: '2023-01-12',
+};
+
+// POST req made by axios
+
+axios.post(apiUrl, requestData)
+    .then(response => {
+        console.log('Response:', response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error.response ? error.response.data : error.message);
+    });
