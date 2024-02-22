@@ -4,7 +4,7 @@ const axios = require("axios");
 const { MongoClient } = require("mongodb");
 const cron = require("node-cron");
 
-const uri = "mongodb+srv://shubhankar2003:KHaEoz2P0NrIw4y7@cluster0.5zib7ue.mongodb.net/?retryWrites=true&w=majority";
+const uri = "YOU_MONGODB_CONNECTION_STRING";
 const client = new MongoClient(uri);
 
 // Coingecko API endpoint for getting the list of cryptocurrencies
