@@ -55,35 +55,36 @@ This project involves implementing three practical functionalities related to cr
 3. Configure MongoDB connection:
 
 Open routes/index.js and update the uri variable with your MongoDB connection string.
-Run the application:
 
-bash
-Copy code
-npm start
-Usage
-Visit http://localhost:3000/ in your browser to view the home page.
+4. Run the application:
 
-Functionality 1: Update Cryptocurrency List
+    ```bash
+    Copy code
+    npm start
+    ```
+    
+## Usage
 
-Cryptocurrency data is automatically updated in the MongoDB database every 1 hour.
-Functionality 2: Retrieve Historical Currency Price
+    1. Visit http://localhost:3000/ in your browser to view the home page.
+    
+    2. Functionality 1: Update Cryptocurrency List
+    - Cryptocurrency data is automatically updated in the MongoDB database every 1 hour.
+    
+    3. Functionality 2: Retrieve Historical Currency Price
+    - Use the API endpoint /get_price for fetching the historical price of one cryptocurrency in another.
+    
+    4. Functionality 3: Explore Companies Holding Cryptocurrency
+    - Use the API endpoint /get_company/:id to get information on companies holding a particular cryptocurrency.
+    
+## Additional Notes
+- Ensure that MongoDB is running and accessible.
+- The background job for Functionality 1 is scheduled using node-cron.
+- Modify the Coingecko API base URL and endpoints if needed.
+- Feel free to customize the CSS for a better visual experience.
 
-Use the API endpoint /get_price for fetching the historical price of one cryptocurrency in another.
-Functionality 3: Explore Companies Holding Cryptocurrency
 
-Use the API endpoint /get_company/:id to get information on companies holding a particular cryptocurrency.
-Additional Notes
-Ensure that MongoDB is running and accessible.
-The background job for Functionality 1 is scheduled using node-cron.
-Modify the Coingecko API base URL and endpoints if needed.
-Feel free to customize the CSS for a better visual experience.
-Author
-Your Name
-GitHub: yourusername
-bash
-Copy code
-
-This updated version provides more context and makes the functionalities clearer for use
-
+## Author
+Shubhankar Karajkhede
+GitHub: https://github.com/shubhankar2602
 
 
