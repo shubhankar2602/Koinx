@@ -123,3 +123,52 @@ axios.post(apiUrl, requestData)
     .catch(error => {
         console.error('Error:', error.response ? error.response.data : error.message);
     });
+
+
+// Task 3 Companies holding particular 
+
+router.get('/get_company/:id', async (req, res) => {
+  const currencyToSearch = req.params.id || 'bitcoin'; // Default to bitcoin if not provided
+  const companiesList = await getCompaniesHoldingCrypto(currencyToSearch);
+    
+  if (companiesList) {
+    res.json({ companies: companiesList });
+  } else {
+     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+async function getCompaniesHoldingCrypto(currency) {
+  const apiUrl = `https://api.coingecko.com/api/v3/companies/public_treasury/${currency}`;
+  const params = {
+    currency: currency.toLowerCase(),
+  };
+
+  try {
+    const response = await axios.get(apiUrl, { params });
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
+      return null;
+    }
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    return null;
+  }
+}
+
+const serverUrl = 'http://localhost:3000'; 
+
+const companyId = 'bitcoin'; // Can be replaced with actual company ID
+
+// GET req from the Axios to the end point
+axios.get(`${serverUrl}/get_company/${companyId}`)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(`Error: ${error.message}`);
+  });
+module.exports = router;

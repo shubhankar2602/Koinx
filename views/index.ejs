@@ -3,9 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crypto Tasks Information</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        code {
+            background-color: #f0f0f0;
+            padding: 3px;
+            border-radius: 3px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Koinx</h1>
+    <h1>1. Cryptocurrency Names and IDs</h1>
+    <p>
+        1. Using Coingecko’s APIs to get the list of all cryptocurrencies.
+        <br>
+        2. Store names and ids in a MongoDB database.
+        <br>
+        3. Write a background job to update the list every 1 hour.
+        <br>
+        <img src="../images/cryptoCompany with ID.png" alt="" height="500px" width="900px">
+        <br>
+        API Documentation: <a href="https://www.coingecko.com/api/documentation">Coingecko API</a>
+    </p>
+
+    <h1>2. Build an API for Cryptocurrency Prices</h1>
+    <p>
+        1. Build an API that takes Coingecko IDs of 2 cryptocurrencies.
+        <br>
+        2. Returns the price of one currency in another on a specific date.
+        <br>
+        3. Data Requested 
+        <br>
+        <code>
+            {
+                "fromCurrency": "bitcoin",
+                "toCurrency": "etherum",
+                "date": "12-01-2023"
+            }
+        </code>
+        <br>
+        4. Use any Coingecko API for this task.
+        <br>
+        <img src="../images/price.png" alt="">
+    </p>
+
+    <h1>3. Integrate Coingecko’s Companies Public Treasury API</h1>
+    <p>
+        1. Integrate Coingecko’s <code>/companies/public_treasury</code> API.
+        <br>
+        2. Get the list of companies holding a particular cryptocurrency.
+        <br>
+        3. Request Example:
+        <br>
+        <code>
+            {
+                "currency": "bitcoin"
+            }
+        </code>
+        <br>
+        4. Response: List of companies holding the specified coin.
+        <br>
+        <img src="../images/company holding.png" alt="">
+    </p>
+
+    <h2>GitHub Repository:</h2>
+    <p>HitHub Repository to check the source code.</p>
+    <p>Repository: <a href="https://github.com/shubhankar2602/Koinx">https://github.com/shubhankar2602/Koinx</a></p>
 </body>
 </html>
